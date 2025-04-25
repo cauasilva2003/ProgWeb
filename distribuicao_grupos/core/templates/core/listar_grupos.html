@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h2>Grupos do Tema: {{ tema.titulo }}</h2>
+<h4>Data: {{ tema.data_apresentacao }}</h4>
+<h5>Período: {{ tema.horario_inicio }} - {{ tema.horario_fim }}</h5>
+
+{% for grupo in grupos %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <strong>{{ grupo.nome }}</strong> — Apresentação às {{ grupo.horario_apresentacao }} (Ordem: {{ grupo.ordem_apresentacao }})
+        </div>
+        <div class="card-body">
+            <ul>
+                {% for aluno in grupo.alunos.all %}
+                    <li>{{ aluno.nome }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}
